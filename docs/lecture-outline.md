@@ -23,6 +23,16 @@
 | 12 | Open problems | 5 / 3 | the research gaps | [12](12-open-problems.md) |
 | 13 | Recap and references | 2 / 1 | three takeaways | — |
 
+**Optional modules** for a longer course or a second session (about 45 minutes each):
+
+| Module | Content | Docs |
+|---|---|---|
+| Deep research agents | architectures, open training recipes (WebSailor, OpenResearcher), BrowseComp-Plus, rubric/process evaluation | [13](13-deep-research.md) |
+| RAG security | PoisonedRAG → InceptionRAG, prompt injection, KV-cache side channels, SLOT taxonomy, defenses | [15](15-security.md) |
+| RAG in production | defaults, symptom → fix table, infrastructure, evaluation loop | [17](17-production-guide.md) |
+| Long context vs RAG | Self-Route, OP-RAG, LongRAG, LaRA; context engineering | [14](14-long-context-vs-rag.md) |
+| Domain RAG | MIRAGE, Legal RAG Bench, FinanceBench, CRAG-MM | [16](16-domain-and-enterprise-rag.md) |
+
 \* In the 90-minute version, fold the "numbers don't compare" slide into Section 4.
 
 ## Deep-dive template (4–5 slides per paper, the same pattern as the KDD 2026 tutorial)
@@ -33,7 +43,9 @@
 5. **What changed**: one sentence answering "what can this do that the previous approach couldn't?"
 
 **Deep-dives** (one canonical method per idea): Search-R1, UR², AutoSearch, QuCo-RAG, LatentRAG, State-Aware RAG, T²RAG, HiKEY.
-**One-slide mentions:** SPARKLE, RAG-on-a-Diet, The Retrieval Bottleneck, HiGoE, FRANQ, Chart-MRAG, CMC-Bench, SpecCache, QueryLink, EgoMemory.
+**One-slide mentions:** SPARKLE, RAG-on-a-Diet, The Retrieval Bottleneck, HiPRAG, Agentic-R, BrowseComp-Plus, HiGoE, TH-RAG, ParallaxRAG, MegaRAG, FRANQ, Chart-MRAG, CMC-Bench, InceptionRAG, SpecCache, QueryLink, EgoMemory.
+
+**Ready-made deck:** [`slides/advanced-rag.md`](../slides/advanced-rag.md) (47 Marp slides with speaker notes, polls and demo cues).
 
 ## Status labels on every paper slide
 `ACL 2026 main` · `Findings ACL 2026` · `Workshop` · `arXiv`. The status of each paper is in [papers/README.md](../papers/README.md).

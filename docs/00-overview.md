@@ -33,6 +33,41 @@ Every paper in this repo answers at least one of:
 
 The SoK on agentic RAG ([arXiv:2603.07379](https://arxiv.org/abs/2603.07379)) formalises agentic loops as **finite-horizon POMDPs** and classifies systems by *planning mechanism*, *retrieval orchestration*, *memory paradigm* and *tool-invocation behaviour*.
 
+## The landscape at a glance
+
+```mermaid
+mindmap
+  root((Advanced RAG 2026))
+    When to retrieve
+      FLARE / DRAGIN
+      Self-RAG
+      Adaptive-RAG
+      UR²
+      QuCo-RAG
+      HiPRAG
+    What to retrieve
+      Query rewriting / HyDE
+      Triplets: T²RAG
+      Graphs: GraphRAG, HippoRAG, TH-RAG
+      Trees: RAPTOR, HiKEY
+      Latent: LatentRAG, CLaRa
+    How to use it
+      Reranking and ordering
+      Working memory: State-Aware RAG
+      Proxies: SPARKLE, s3
+      Verification: FRANQ
+    At what cost
+      AutoSearch
+      RAG-on-a-Diet
+      SpecCache / CacheBlend
+      Safe answer caching
+    Beyond QA
+      Deep research
+      Multimodal: Chart-MRAG, MegaRAG
+      Domains: medicine, law, finance
+      Security: poisoning, injection
+```
+
 ## Timeline
 
 ```
@@ -44,10 +79,11 @@ The SoK on agentic RAG ([arXiv:2603.07379](https://arxiv.org/abs/2603.07379)) fo
       ColPali · VisRAG · RAGCache · CacheBlend · PoisonedRAG · CRAG benchmark · FRAMES
 2025  DeepSeek-R1 (Jan) → Search-o1 · R1-Searcher · Search-R1 · ReSearch · DeepResearcher
       WebThinker · ZeroSearch · s3 · HippoRAG 2 · CLaRa · deep-research agents
-2026  ACL 2026: UR² · HiKEY · HiGoE · SPARKLE · SpecCache · Chart-MRAG · RAG-on-a-Diet
+2026  ACL 2026: BrowseComp-Plus · TH-RAG · ParallaxRAG · MegaRAG · UR² · HiKEY · HiGoE · SPARKLE · SpecCache · Chart-MRAG · RAG-on-a-Diet
                 Retrieval Bottleneck (main) · AutoSearch · QuCo-RAG · T²RAG
                 State-Aware RAG · FRANQ · QueryLink · EgoMemory (Findings)
-      arXiv:    LatentRAG · SoK Agentic RAG
+      ICLR 2026: HiPRAG · CCS 2026: InceptionRAG · Findings: Agentic-R
+      arXiv:    LatentRAG · SoK Agentic RAG · OpenResearcher · CIPO · SLOT security survey
       KDD 2026: tutorial "RAG: From Modular to Agentic Systems"
 ```
 
@@ -78,4 +114,7 @@ Watch how each method handles it:
 
 - New to RAG: [01 Foundations](01-foundations.md) → [02 Failure modes](02-failure-modes.md)
 - Know RAG, want the frontier: [04 Learned retrieval policies](04-learned-retrieval-policies.md)
-- Teaching it: [lecture-outline.md](lecture-outline.md)
+- Building a product: [17 Production guide](17-production-guide.md) → [15 Security](15-security.md)
+- Beyond QA: [13 Deep research](13-deep-research.md), [16 Domain & enterprise](16-domain-and-enterprise-rag.md)
+- Choosing a method: [comparison-matrix.md](comparison-matrix.md) · Terms: [glossary.md](glossary.md) · Quick answers: [faq.md](faq.md)
+- Teaching it: [lecture-outline.md](lecture-outline.md) and the slide deck in [`slides/`](../slides/)

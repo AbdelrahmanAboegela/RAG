@@ -22,6 +22,14 @@ Each item links to the 2026 evidence that makes it open.
 
 10. **Cost as a first-class objective.** AutoSearch (depth), RAG-on-a-Diet (model size) and SpecCache (prefill) each optimise one axis. *Open:* joint optimisation, and reporting cost in money on shared hardware.
 
+11. **Reasoning makes attacks easier.** InceptionRAG (CCS 2026) shows multi-hop reasoning can be steered by harmless-looking passage chains. *Open:* defenses that don't disable the multi-hop reasoning we want (see [15](15-security.md)).
+
+12. **Deep research evaluation and credit assignment.** FINDER/DEFT shows agents fail at evidence integration and verification. MiroEval shows the process predicts the outcome. *Open:* process rewards for 100+-call horizons; citation faithfulness at report scale (see [13](13-deep-research.md)).
+
+13. **Retrievers that serve agents.** Agentic-R, R3 and Critic-R train retrievers for agent sub-queries. *Open:* stable co-training at scale; retrievers robust to biased queries (CoRM-RAG).
+
+14. **Interpretability of evidence use.** Attribution graphs (arXiv:2605.14192) separate successful from failed evidence flow, and ParallaxRAG exploits head specialisation. *Open:* using internal signals as cheap, reliable retrieval triggers or error detectors in production.
+
 ## Research idea prompts
 - An **AutoSearch-style depth reward for long-form answers**, using claim-level coverage (FRANQ-style) instead of exact match.
 - **QuCo-RAG signals as RL features:** give the search policy corpus frequency as an input.

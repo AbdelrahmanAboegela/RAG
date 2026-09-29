@@ -24,7 +24,9 @@ FRANQ estimates P(true) by conditioning on faithfulness, using a different uncer
 - **PoisonedRAG:** about 5 injected passages per target question give about 90% attack success. **BadRAG** ([arXiv:2406.00083](https://arxiv.org/abs/2406.00083)) plants trigger-activated passages.
 - **Agentic RAG widens the surface.** The SoK on agentic RAG ([arXiv:2603.07379](https://arxiv.org/abs/2603.07379)) lists hallucination propagation, memory poisoning, retrieval misalignment and cascading tool-execution vulnerabilities.
 - **Prompt injection via retrieved content:** a retrieved web page can contain instructions. Treat retrieved text as data, never as instructions.
-- **KV-cache side channels:** cache-sharing optimisations (Section 10) can leak which documents other users retrieved; see for example [arXiv:2606.21842](https://arxiv.org/abs/2606.21842).
+- **KV-cache side channels:** non-prefix KV-cache fusion (Section 10) can leak the length and content of other users' private prompts through timing (SpliceLeak, [arXiv:2606.21842](https://arxiv.org/abs/2606.21842)).
+
+A full chapter on attacks and defenses, including InceptionRAG (CCS 2026), the SLOT taxonomy and KV-cache side channels, is [15-security.md](15-security.md).
 
 ## 8.4 Practical defences
 1. **Provenance:** keep and show source IDs for every claim; evaluate citation precision and recall (ALCE).

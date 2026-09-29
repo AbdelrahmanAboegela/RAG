@@ -57,6 +57,9 @@ Run BM25 and a dense retriever in parallel and fuse with **Reciprocal Rank Fusio
 
 Retrieve 50–100 candidates cheaply, then rerank with a **cross-encoder** (query and document jointly encoded, e.g. BGE-reranker, monoT5) or an **LLM reranker** (listwise, e.g. RankGPT; RankRAG trains a single model to rerank and generate). Reranking is usually the cheapest large accuracy gain in a pipeline.
 
+### Rerankers that reason (2025–26)
+**Rank1** distils R1 reasoning traces into a reranker that "thinks" before scoring. **ReasonIR** trains a retriever on hard synthetic queries for reasoning tasks. See [18](18-retrievers-for-reasoning-and-agents.md). Toy reranking, MMR and position-aware ordering: [`rerank.py`](../code/ragkit/rerank.py), `python code/examples/07_rerank_and_order.py`.
+
 ## 1.6 Generation
 
 - **Prompting:** instruct the model to answer only from context and to cite passage IDs. Put the most relevant passages first *and* last (see lost-in-the-middle, Section 2).

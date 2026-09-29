@@ -40,8 +40,24 @@
 - *Chart-MRAG* (ACL 2026): [Anthology](https://aclanthology.org/2026.acl-long.1164/)
 - Faysse et al., *ColPali* (ICLR 2025): [arXiv:2407.01449](https://arxiv.org/abs/2407.01449)
 
+**Retrievers for agents, process rewards, deep research**
+- ⭐ Chen et al., *BrowseComp-Plus* (ACL 2026): [arXiv:2508.06600](https://arxiv.org/abs/2508.06600) · [note](../papers/2026/browsecomp-plus.md)
+- Wu et al., *HiPRAG* (ICLR 2026): [arXiv:2510.07794](https://arxiv.org/abs/2510.07794) · [note](../papers/2026/hiprag.md)
+- Liu et al., *Agentic-R* (Findings ACL 2026): [Anthology](https://aclanthology.org/2026.findings-acl.785/)
+- Shao et al., *ReasonIR* (2025): [arXiv:2504.20595](https://arxiv.org/abs/2504.20595)
+- Li et al., *OpenResearcher* (2026): [arXiv:2603.20278](https://arxiv.org/abs/2603.20278)
+
+**Security, long context, domains**
+- ⭐ Zhang et al., *InceptionRAG* (CCS 2026): [arXiv:2609.16818](https://arxiv.org/abs/2609.16818)
+- Li et al., *Self-Route: RAG or Long-Context LLMs?* (EMNLP 2024 industry): [arXiv:2407.16833](https://arxiv.org/abs/2407.16833)
+- Xiong et al., *MIRAGE / MedRAG* (Findings ACL 2024): [arXiv:2402.13178](https://arxiv.org/abs/2402.13178)
+- Butler & Butler, *Legal RAG Bench* (2026): [arXiv:2603.01710](https://arxiv.org/abs/2603.01710)
+
 ## Surveys
 - Gao et al., *RAG for LLMs: A Survey*: [arXiv:2312.10997](https://arxiv.org/abs/2312.10997)
 - Li et al., *Towards Agentic RAG with Deep Reasoning*: [arXiv:2507.09477](https://arxiv.org/abs/2507.09477)
 - Mishra et al., *SoK: Agentic RAG* (2026): [arXiv:2603.07379](https://arxiv.org/abs/2603.07379)
 - Gao et al., *Scaling Beyond Context: Multimodal RAG for Document Understanding* (ACL 2026): [Anthology](https://aclanthology.org/2026.acl-long.204/)
+- Xu et al., *Securing RAG: A Taxonomy of Attacks, Defenses, and Future Directions* (2026): [arXiv:2604.08304](https://arxiv.org/abs/2604.08304)
+- Li et al., *RL Foundations for Deep Research Systems* (2025): [arXiv:2509.06733](https://arxiv.org/abs/2509.06733)
+- Mei et al., *A Survey of Context Engineering for LLMs* (2025): [arXiv:2507.13334](https://arxiv.org/abs/2507.13334)

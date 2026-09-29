@@ -1,0 +1,5 @@
+{"id": "q1", "question": "Are the directors of Move (1970) and Méditerranée (1963) from the same country?", "prediction": "no", "answers": ["no"], "retrieved": ["p0", "p2", "p1", "p3"], "gold_evidence": ["p0", "p1", "p2", "p3"], "num_searches": 4}
+{"id": "q2", "question": "Who directed Move (1970)?", "prediction": "The film was directed by Stuart Rosenberg", "answers": ["Stuart Rosenberg"], "retrieved": ["p0", "p4"], "gold_evidence": ["p0"], "num_searches": 1}
+{"id": "q3", "question": "What nationality was Jean-Daniel Pollet?", "prediction": "France", "answers": ["French"], "retrieved": ["p7", "p3"], "gold_evidence": ["p3"], "num_searches": 2}
+{"id": "q4", "question": "Which film movement is Jean-Daniel Pollet associated with?", "prediction": "the French New Wave", "answers": ["French New Wave", "Nouvelle Vague"], "retrieved": ["p3", "p7"], "gold_evidence": ["p3"], "num_searches": 1}
+{"id": "q5", "question": "Who starred in Move (1970)?", "prediction": "Paul Newman", "answers": ["Elliott Gould"], "retrieved": ["p6", "p1"], "gold_evidence": ["p0"], "num_searches": 2}

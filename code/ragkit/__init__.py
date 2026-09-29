@@ -15,8 +15,20 @@ from .autosearch_reward import autosearch_reward, minimal_sufficient_depth
 from .quco import CorpusStats, InMemoryCorpusStats, QuCoTrigger
 from .t2rag import Triplet, TripletState, classify, T2RAG
 from .rrf_hybrid import HybridRetriever
+from .rerank import ProximityReranker, mmr, lost_in_the_middle_order
+from .graph import TripletGraph
+from .rl import group_relative_advantages, masked_policy_loss, token_mask_from_steps
+from .cache import GroundedAnswerCache
+from .raptor import RaptorTree
+from .router import HeuristicRouter
+from .evaluate import evaluate, retrieval_metrics, cover_em
+from .llm import OpenAICompatibleLLM
 
 __all__ = [
+    "ProximityReranker", "mmr", "lost_in_the_middle_order", "TripletGraph",
+    "group_relative_advantages", "masked_policy_loss", "token_mask_from_steps",
+    "GroundedAnswerCache", "RaptorTree", "HeuristicRouter",
+    "evaluate", "retrieval_metrics", "cover_em", "OpenAICompatibleLLM",
     "exact_match", "f1_score", "normalize_answer",
     "tokenize", "chunk_words", "chunk_sentences",
     "BM25", "HashingEmbedder", "DenseIndex", "cosine",

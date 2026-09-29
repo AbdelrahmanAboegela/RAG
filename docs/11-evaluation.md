@@ -26,6 +26,13 @@
 | **BrowseComp** (OpenAI) | hard-to-find web facts; deep-research agents | [arXiv:2504.12516](https://arxiv.org/abs/2504.12516) |
 | **ALCE** | citation quality | [arXiv:2305.14627](https://arxiv.org/abs/2305.14627) |
 | **KILT** | knowledge-intensive tasks over one Wikipedia snapshot | [arXiv:2009.02252](https://arxiv.org/abs/2009.02252) |
+| **RGB** (AAAI 2024) | four RAG abilities: noise robustness, negative rejection, information integration, counterfactual robustness | [arXiv:2309.01431](https://arxiv.org/abs/2309.01431) |
+| **BrowseComp-Plus** (ACL 2026) | deep research on a **fixed** ~100K-doc corpus; separates retriever from agent | [note](../papers/2026/browsecomp-plus.md) |
+| **CRAG-MM** (KDD 2026) | multimodal, multi-turn, egocentric images | [arXiv:2510.26160](https://arxiv.org/abs/2510.26160) |
+| **GraphRAG-Bench** | when graphs help RAG | [arXiv:2506.05690](https://arxiv.org/abs/2506.05690) |
+| **LaRA** | RAG vs long context | [arXiv:2502.09977](https://arxiv.org/abs/2502.09977) |
+| Domain: MIRAGE (medicine), Legal RAG Bench, FinanceBench | domain RAG | [16](16-domain-and-enterprise-rag.md) |
+| Deep research: ResearchRubrics, FINDER, MMDR-Bench, MiroEval, DRB | report-level evaluation | [13](13-deep-research.md) |
 | LoCoMo / LongMemEval | long-term conversational memory | §6 |
 | M3DocVQA, Chart-MRAG | multimodal document RAG | §9 |
 

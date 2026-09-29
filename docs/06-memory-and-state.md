@@ -28,6 +28,19 @@ Agent memory is retrieval over the agent's own history.
 | **QueryLink** (Findings ACL 2026) | multi-view **query–memory alignment** into a shared space + coherent memory chunking; ≥7% on LoCoMo and LongMemEval, >6% F1 on top of A-MEM | [note](../papers/2026/querylink.md) · 💻 [code](https://github.com/Dontplay0112/querylink) |
 | **EgoMemory** (Findings ACL 2026) | personalised retrieval from **egocentric video**; training-free EgoRetriever (MLLM + reflective CoT); a new benchmark of 245 videos, 45 participants and 639 queries | [note](../papers/2026/egomemory.md) |
 
+More memory work:
+
+| System | Idea | Link |
+|---|---|---|
+| **MemGPT / Letta** (2023) | OS-style virtual context: tiers of memory paged in and out of the context window | [arXiv:2310.08560](https://arxiv.org/abs/2310.08560) · 💻 [letta-ai/letta](https://github.com/letta-ai/letta) |
+| **Memory-R1** (2025) | RL-trained Memory Manager (ADD / UPDATE / DELETE / NOOP) + Answer Agent; works from 152 training pairs | [arXiv:2508.19828](https://arxiv.org/abs/2508.19828) |
+| **Amber** (Findings ACL 2025) | multi-agent iterative memory updating for open-domain QA | [arXiv:2504.05312](https://arxiv.org/abs/2504.05312) |
+| **AgenticRag-R1** (2026) | a memory *stack* as part of the RL action space | [arXiv:2608.29622](https://arxiv.org/abs/2608.29622) |
+| **Goal-Mem** (2026) | backward chaining from the user's goal into sub-goals, each resolved by memory retrieval | [arXiv:2605.12213](https://arxiv.org/abs/2605.12213) |
+| **EvoEmbedding** (2026) | evolvable embeddings that track a sequential context; naive RAG + EvoEmbedding beats agentic memory systems | [arXiv:2606.21649](https://arxiv.org/abs/2606.21649) |
+| **Co-E** (2026) | synchronised graph and text working memory, training-free | [arXiv:2607.23278](https://arxiv.org/abs/2607.23278) |
+| **Experience retrieval** (EMNLP 2026) | retrieve past *trajectories* and train the agent to use them | [arXiv:2603.18272](https://arxiv.org/abs/2603.18272) |
+
 **Benchmarks:** LoCoMo ([arXiv:2402.17753](https://arxiv.org/abs/2402.17753)) and LongMemEval ([arXiv:2410.10813](https://arxiv.org/abs/2410.10813)) for conversational memory; EgoLife, EgoCVR and EgoMemory for video.
 
 ## 6.3 Themes

@@ -8,11 +8,16 @@ Small, dependency-free Python (3.8+, standard library only) that shows **the mec
 
 ```bash
 # from the repo root
-python -m unittest discover -s code/tests      # 17 tests, runs in <1 s
+python -m unittest discover -s code/tests      # 33 tests, runs in <1 s
 python code/examples/01_hybrid_retrieval.py    # naive RAG: BM25 vs dense vs RRF
 python code/examples/02_agentic_loop.py        # Search-R1 protocol + AutoSearch reward
 python code/examples/03_quco_trigger.py        # QuCo-RAG's corpus-statistics triggers
 python code/examples/04_t2rag.py               # T²RAG's placeholder-triplet loop
+python code/examples/05_graph_ppr.py           # HippoRAG-style Personalized PageRank
+python code/examples/06_grpo.py                # GRPO advantages + masked PPO loss
+python code/examples/07_rerank_and_order.py    # rerank, MMR, lost-in-the-middle ordering
+python code/examples/08_evaluate.py            # EM vs F1 vs cover-EM vs retrieval metrics
+cd code && python -m ragkit examples/data/toy_run.jsonl   # evaluate any JSONL run
 ```
 
 All examples share one **running example** ([`examples/corpus.py`](examples/corpus.py)):
@@ -34,8 +39,31 @@ It is a four-hop comparison question in the style of 2WikiMultihopQA, and it is 
 | [`autosearch_reward.py`](ragkit/autosearch_reward.py) | minimal sufficient search depth; base, efficiency and quality rewards | AutoSearch (Findings ACL 2026) | [papers/2026/autosearch.md](../papers/2026/autosearch.md) |
 | [`quco.py`](ragkit/quco.py) | entity-frequency and co-occurrence retrieval triggers; optional Infini-gram client | QuCo-RAG (Findings ACL 2026) | [papers/2026/quco-rag.md](../papers/2026/quco-rag.md) |
 | [`t2rag.py`](ragkit/t2rag.py) | resolved / searchable / fuzzy triplets, iterative binding | T²RAG (Findings ACL 2026) | [papers/2026/t2rag.md](../papers/2026/t2rag.md) |
+| [`rerank.py`](ragkit/rerank.py) | joint query–doc reranker (toy cross-encoder), MMR, lost-in-the-middle ordering | Carbonell & Goldstein 1998; Liu et al. 2024 | [01-foundations](../docs/01-foundations.md) |
+| [`graph.py`](ragkit/graph.py) | triplet graph + Personalized PageRank passage ranking | HippoRAG | [papers/foundations/hipporag.md](../papers/foundations/hipporag.md) |
+| [`raptor.py`](ragkit/raptor.py) | recursive k-means + summary tree, collapsed-tree search | RAPTOR | [papers/foundations/raptor.md](../papers/foundations/raptor.md) |
+| [`rl.py`](ragkit/rl.py) | GRPO group-relative advantages, PPO-clip loss with retrieved-token mask | Search-R1, DeepSeekMath | [04-learned-retrieval-policies](../docs/04-learned-retrieval-policies.md) |
+| [`router.py`](ragkit/router.py) | no / single / multi-step retrieval routing | Adaptive-RAG, UR², Self-Route | [14-long-context-vs-rag](../docs/14-long-context-vs-rag.md) |
+| [`cache.py`](ragkit/cache.py) | answer cache with similarity, evidence-overlap, version and support gates | GroundedCache, FinCacheServe (2026) | [10-efficiency](../docs/10-efficiency.md) |
+| [`evaluate.py`](ragkit/evaluate.py) | EM, F1, cover-EM, Recall@k, All@k, MRR, avg searches from JSONL | — | [11-evaluation](../docs/11-evaluation.md) |
+| [`llm.py`](ragkit/llm.py) | stdlib client for any OpenAI-compatible endpoint (vLLM, SGLang, …) with stop-tag restoration | — | below |
 
 ## Plugging in real models
+
+The quickest path is a local vLLM server plus `ragkit.llm.OpenAICompatibleLLM`:
+
+```bash
+vllm serve Qwen/Qwen2.5-7B-Instruct --port 8000
+```
+```python
+from ragkit import AgenticRAG, HybridRetriever, OpenAICompatibleLLM
+llm = OpenAICompatibleLLM("http://localhost:8000/v1", "Qwen/Qwen2.5-7B-Instruct",
+                          stop=["</search>", "</answer>"], append_stop=True)
+agent = AgenticRAG(llm, HybridRetriever(my_docs).retrieve_text)
+```
+
+To use a trained Search-R1 checkpoint, serve it the same way; the tag protocol in `agentic.py` matches Search-R1's.
+
 
 Every component that would call an LLM or an embedding model takes a plain function, so you can swap in a real one:
 

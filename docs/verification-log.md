@@ -26,6 +26,21 @@ Method: each 2026 paper's ACL Anthology page and/or arXiv page was opened. For t
 | The Retrieval Bottleneck | read only from the abstract | **ACL 2026 main** (2026.acl-long.1478). Still abstract-level only; read the full paper before presenting its curves |
 | "RAG 1.0 → 4.0" | presented as a taxonomy | **Not an established taxonomy.** Use modular / graph-enhanced / agentic (KDD 2026 tutorial, surveys), or label it as your own framing |
 
+## Second pass (29 September 2026): additions
+
+| Item | What was checked | Note |
+|---|---|---|
+| BrowseComp-Plus | arXiv abstract + official repo README | ACL 2026 main **per the repo**; numbers from the abstract |
+| Agentic-R, TH-RAG, ParallaxRAG, MegaRAG | ACL Anthology pages | abstracts only; quote no numbers beyond the abstract |
+| HiPRAG | arXiv abstract + comment | "Accepted to ICLR 2026" per the arXiv comment |
+| InceptionRAG | arXiv abstract + comment | ACM CCS 2026 "accepted to appear" per the arXiv comment |
+| TRACE (poisoning), experience-retrieval agents | arXiv comments | EMNLP 2026 (Industry / Main) per the arXiv comments |
+| SIRA ("SuperIntelligent Retrieval Agent") | ICLR virtual site | a search result presented it as an ICLR 2026 main paper; it is a **poster at the ICLR 2026 MemAgents workshop**. Not included |
+| ~70 further arXiv papers in the 2025 and 2026 catalogues | arXiv API (title, authors, abstract, comment) | one-paragraph summaries written from the abstract only |
+| All GitHub links (117 repos) | `git ls-remote` | all reachable |
+| All arXiv IDs (145) | arXiv API; titles printed and checked by eye | all resolve to the intended paper |
+| Foundation-paper author lists (Self-RAG, GraphRAG, HippoRAG 1/2, RAPTOR) | arXiv API | corrected the GraphRAG list (10 authors) |
+
 ## Not verified or not found
 - **ATIR:** no paper by that name found on the ACL Anthology or arXiv via search (September 2026). It is **excluded** from this repo until someone locates a primary source.
 - **HiGoE metric values:** not quoted; the abstract gives no numbers.
@@ -33,10 +48,11 @@ Method: each 2026 paper's ACL Anthology page and/or arXiv page was opened. For t
 - **Chart-MRAG** full author names: two appear in collapsed form in the Anthology metadata.
 
 ## Code availability (checked 29 September 2026)
-Public: Search-R1, UR², AutoSearch, QuCo-RAG, T²RAG, HiGoE, QueryLink, SPARKLE, CHARGE (Chart-MRAG), and state-aware-rag (the repo exists; we did not check its contents).
-Not found: LatentRAG, HiKEY, FRANQ (related toolkit: LM-Polygraph), SpecCache, RAG-on-a-Diet, The Retrieval Bottleneck, EgoMemory, CMC-Bench.
+Public: Search-R1, UR², AutoSearch, QuCo-RAG, T²RAG, HiGoE, QueryLink, SPARKLE, CHARGE (Chart-MRAG), BrowseComp-Plus, ParallaxRAG, OpenResearcher, and state-aware-rag (the repo exists; we did not check its contents).
+No code link found (paper page checked; for the first eight also a web search): LatentRAG, HiKEY, FRANQ (related toolkit: LM-Polygraph), SpecCache, RAG-on-a-Diet, The Retrieval Bottleneck, EgoMemory, CMC-Bench, Agentic-R, HiPRAG, TH-RAG, MegaRAG, InceptionRAG.
 
 ## Re-verification procedure
+0. Run `python tools/check_links.py --external` (repos + arXiv titles) and `python tools/validate_papers.py`.
 1. For each paper in [papers/README.md](../papers/README.md), open the Anthology or arXiv page. Check the venue, title and author list, and that every quoted number appears in the abstract or a named table.
 2. Search arXiv and GitHub for newly released code.
 3. Update the **Verified** row in the paper's note and the date at the top of this file.

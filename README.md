@@ -11,24 +11,34 @@
 
 ```
 .
-├── docs/            13-chapter course on advanced RAG + lecture outline + reading list + verification log
+├── docs/            19-chapter course (foundations → deep research, security, production) + glossary,
+│                    FAQ, method comparison matrix, lecture outline, reading list, verification log
 ├── papers/          one note per key paper: problem → idea → method → results → limitations → what changed
-│   ├── 2026/        17 papers from ACL 2026 (main + Findings), arXiv and workshops
-│   ├── 2025/        Search-R1 in depth + a catalogue of the 2025 RL-for-search wave
-│   └── foundations/ the 2020–2024 papers everything else assumes
-├── code/            dependency-free reference implementations (BM25, RRF, Search-R1 loop,
-│                    AutoSearch reward, QuCo-RAG triggers, T²RAG loop) + tests + runnable examples
-└── experiments/     how to run each paper's OFFICIAL code (commands copied from each repo's README)
+│   ├── 2026/        25 detailed notes (ACL 2026 main/Findings, ICLR, CCS, arXiv) + a catalogue of ~25 more
+│   ├── 2025/        Search-R1 in depth + a catalogue of ~25 systems from the RL-for-search wave
+│   └── foundations/ Self-RAG, GraphRAG, HippoRAG, RAPTOR in depth + ~35 classic papers explained
+├── code/            ragkit: stdlib-only implementations of 17 mechanisms (BM25, RRF, rerank/MMR,
+│                    Search-R1 loop, GRPO + loss masking, AutoSearch reward, QuCo-RAG triggers, T²RAG,
+│                    PPR graph, RAPTOR, router, safe answer cache, evaluator, OpenAI-compatible client)
+│                    + 33 tests + 8 runnable examples + a tour notebook
+├── experiments/     how to run 10 papers' OFFICIAL code (commands copied from each repo's README)
+├── slides/          47-slide Marp lecture deck with speaker notes, polls and demo cues
+├── data/papers.csv  machine-readable index of every paper with a note
+└── tools/           link checker (+ arXiv/GitHub verification), paper-index validator, notebook runner
 ```
 
 | If you want to… | Start here |
 |---|---|
 | Understand the field in 20 minutes | [docs/00-overview.md](docs/00-overview.md) |
-| Learn RAG properly, start to finish | [docs/](docs/README.md), chapters 01 → 12 |
+| Learn RAG properly, start to finish | [docs/](docs/README.md), chapters 01 → 18 |
 | Catch up on 2026 | [papers/README.md](papers/README.md) and [docs/04](docs/04-learned-retrieval-policies.md) |
 | See the mechanisms in code | [code/](code/README.md) (`python -m unittest discover -s code/tests`) |
 | Reproduce a paper | [experiments/](experiments/README.md) |
-| Teach a lecture on it | [docs/lecture-outline.md](docs/lecture-outline.md) |
+| Build a production system | [docs/17-production-guide.md](docs/17-production-guide.md) → [docs/15-security.md](docs/15-security.md) |
+| Pick a method for your problem | [docs/comparison-matrix.md](docs/comparison-matrix.md) |
+| Understand deep research agents | [docs/13-deep-research.md](docs/13-deep-research.md) |
+| Teach a lecture on it | [docs/lecture-outline.md](docs/lecture-outline.md) + [slides/](slides/README.md) |
+| Look up a term | [docs/glossary.md](docs/glossary.md) · [docs/faq.md](docs/faq.md) |
 
 ---
 
@@ -48,7 +58,9 @@
 
 ## 2026 papers
 
-Status: 🟦 **ACL 2026 main** · 🟩 **Findings of ACL 2026** · 🟨 workshop · ⬜ arXiv preprint · 💻 = code available
+Status: 🟦 **ACL 2026 main** · 🟩 **Findings of ACL 2026** · 🔷 other peer-reviewed venue (named) · 🟨 workshop · ⬜ arXiv preprint · 💻 = code available
+
+About 25 more 2026 papers (CIPO, AgenticRag-R1, Critic-R, PAGE-RAG, ConRAG, EvoEmbedding, GroundedCache, SLOT, SpliceLeak, Legal RAG Bench, and others) are summarised in the [2026 catalogue](papers/2026/README.md).
 
 ### Learned retrieval policies (when / whether / how much to retrieve)
 | Paper | Status | One-line idea | Headline result | Links |
@@ -59,6 +71,8 @@ Status: 🟦 **ACL 2026 main** · 🟩 **Findings of ACL 2026** · 🟨 workshop
 | **SPARKLE**: Plug-and-play Agentic Retrieval Policy | 🟦 | a 3B PPO-trained proxy controls retrieval for a frozen LLM, via KG-style triplet chains | +9.17% in-domain / +2.85% out-of-domain average | [note](papers/2026/sparkle.md) · [paper](https://aclanthology.org/2026.acl-long.1793/) · [💻](https://github.com/jyfang6/sparkle) |
 | **RAG-on-a-Diet** | 🟦 | an RL agent picks the model size (4B / 30B / 671B) per hop | −60% cost vs IRCoT for −3.7 F1 on HotpotQA | [note](papers/2026/rag-on-a-diet.md) · [paper](https://aclanthology.org/2026.acl-long.1562/) |
 | **The Retrieval Bottleneck**: Scaling Laws for RL in RAG | 🟦 | sigmoidal RL scaling; the ceiling is set by retrieval quality | 3.1% extrapolation error at 4× compute | [note](papers/2026/retrieval-bottleneck.md) · [paper](https://aclanthology.org/2026.acl-long.1478/) |
+| **HiPRAG**: Hierarchical Process Rewards | 🔷 ICLR 2026 | per-decision reward: was *this* search (or non-search) necessary? | over-search rate 2.3%; 65.4 / 67.2 avg (3B / 7B) | [note](papers/2026/hiprag.md) · [arXiv](https://arxiv.org/abs/2510.07794) |
+| **Agentic-R**: Learning to Retrieve for Agentic Search | 🟩 | train the *retriever* for agent sub-queries; agent ⇄ retriever co-optimised | consistent gains on 7 benchmarks | [note](papers/2026/agentic-r.md) · [paper](https://aclanthology.org/2026.findings-acl.785/) |
 
 ### Latent retrieval
 | Paper | Status | One-line idea | Headline result | Links |
@@ -78,6 +92,8 @@ Status: 🟦 **ACL 2026 main** · 🟩 **Findings of ACL 2026** · 🟨 workshop
 | **T²RAG**: Beyond Chunks and Graphs | 🟩 | graph-free triplet index; question → placeholder triplets resolved iteratively | up to +11% average; −45% retrieval cost | [note](papers/2026/t2rag.md) · [paper](https://aclanthology.org/2026.findings-acl.1310/) · [💻](https://github.com/Emory-Melody/T2RAG) |
 | **HiKEY**: Hierarchical Multimodal Retrieval for Document QA | 🟦 | parse the document tree; route document → section → unit; budgeted evidence packing | up to +12.9% recall, +6.8% QA | [note](papers/2026/hikey.md) · [arXiv](https://arxiv.org/abs/2605.29606) |
 | **HiGoE**: Hierarchical Graph of Evidence | 🟦 | proposition–evidence graph + PPR + GAT for long-context **summarization** | beats baselines in quality and efficiency | [note](papers/2026/higoe.md) · [paper](https://aclanthology.org/2026.acl-long.902/) · [💻](https://github.com/tkw123/HiGOE) |
+| **TH-RAG** | 🟦 | topic → subtopic → triplet hierarchy for fragmented LLM-built KGs | better accuracy and robustness at low cost | [note](papers/2026/th-rag.md) · [paper](https://aclanthology.org/2026.acl-long.1740/) |
+| **ParallaxRAG** ("Think Parallax") | 🟦 | head-specific, multi-view KG retrieval | SOTA on WebQSP / CWQ | [note](papers/2026/parallaxrag.md) · [paper](https://aclanthology.org/2026.acl-long.1226/) · [💻](https://github.com/LucaLiu1313/ParallaxRAG) |
 
 ### Evidence, trust and multimodal
 | Paper | Status | One-line idea | Headline result | Links |
@@ -85,6 +101,14 @@ Status: 🟦 **ACL 2026 main** · 🟩 **Findings of ACL 2026** · 🟨 workshop
 | **FRANQ** | 🟩 | hallucination detection that separates factuality from faithfulness to context | better factual-error detection than UQ and hallucination baselines | [note](papers/2026/franq.md) · [paper](https://aclanthology.org/2026.findings-acl.338/) |
 | **Chart-MRAG** | 🟦 | chart-based multimodal RAG benchmark (4,738 QA, 8 domains) | best MLLMs: 71.15% correctness even with gold retrieval | [note](papers/2026/chart-mrag.md) · [paper](https://aclanthology.org/2026.acl-long.1164/) · [💻](https://github.com/Nomothings/CHARGE) |
 | **CMC-Bench** ("When Image and Text Disagree") | 🟨 | cross-modal evidence conflicts | VLMs abstain (31.7%) or fabricate (51.9%) | [note](papers/2026/cmc-bench.md) · [paper](https://aclanthology.org/2026.magmar-main.3/) |
+| **MegaRAG** | 🟦 | multimodal knowledge-graph RAG | gains on text and multimodal QA | [note](papers/2026/megarag.md) · [paper](https://aclanthology.org/2026.acl-long.2218/) |
+| **InceptionRAG** | 🔷 CCS 2026 | poisoning split across harmless passages that the LLM chains into a lie | >80% attack success; evades single-doc defenses | [note](papers/2026/inceptionrag.md) · [arXiv](https://arxiv.org/abs/2609.16818) |
+
+### Deep research and evaluation
+| Paper | Status | One-line idea | Headline result | Links |
+|---|---|---|---|---|
+| **BrowseComp-Plus** | 🟦 | BrowseComp on a fixed ~100K-doc corpus, so retriever and agent can be separated | GPT-5: 55.9% (BM25) → 70.1% (Qwen3-Emb-8B) with fewer searches; Search-R1+BM25: 3.86% | [note](papers/2026/browsecomp-plus.md) · [arXiv](https://arxiv.org/abs/2508.06600) · [💻](https://github.com/texttron/BrowseComp-Plus) |
+| **OpenResearcher** | ⬜ | offline 15M-doc environment; 97K long-horizon trajectories | 30B-A3B: 54.8% on BrowseComp-Plus (+34.0) | [note](papers/2026/openresearcher.md) · [arXiv](https://arxiv.org/abs/2603.20278) · [💻](https://github.com/TIGER-AI-Lab/OpenResearcher) |
 
 ### Efficiency
 | Paper | Status | One-line idea | Headline result | Links |
@@ -95,6 +119,9 @@ Status: 🟦 **ACL 2026 main** · 🟩 **Findings of ACL 2026** · 🟨 workshop
 - **KDD 2026 tutorial**, *RAG: From Modular to Agentic Systems* (Dong et al., Meta/UW): [page](https://tutorial.lunadong.com/) · [slides](https://tutorial.lunadong.com/slides.pdf) · [paper](https://tutorial.lunadong.com/paper.pdf) · [2,000-paper DB](https://papers.lunadong.com)
 - **SoK: Agentic RAG**: taxonomy, architectures, evaluation (March 2026): [arXiv:2603.07379](https://arxiv.org/abs/2603.07379)
 - **Scaling Beyond Context**: a survey of multimodal RAG for document understanding (ACL 2026): [paper](https://aclanthology.org/2026.acl-long.204/)
+- **Securing RAG (SLOT taxonomy)** (April 2026): [arXiv:2604.08304](https://arxiv.org/abs/2604.08304) · [paper list](https://github.com/TreeAI-Lab/Awesome-RAG-Security)
+- **RL Foundations for Deep Research Systems** (2025): [arXiv:2509.06733](https://arxiv.org/abs/2509.06733)
+- **Context Engineering survey** (2025): [arXiv:2507.13334](https://arxiv.org/abs/2507.13334)
 
 ---
 
@@ -111,6 +138,10 @@ Status: 🟦 **ACL 2026 main** · 🟩 **Findings of ACL 2026** · 🟨 workshop
 | ZeroSearch | an LLM simulates the search engine during RL | [arXiv](https://arxiv.org/abs/2505.04588) · [💻](https://github.com/Alibaba-NLP/ZeroSearch) |
 | s3 | train only the searcher; "Gain Beyond RAG" reward | [arXiv](https://arxiv.org/abs/2505.14146) · [💻](https://github.com/pat-jj/s3) |
 | CLaRa (Apple) | retrieval and generation in a shared continuous space | [arXiv](https://arxiv.org/abs/2511.18659) · [💻](https://github.com/apple/ml-clara) |
+| StepSearch · AutoRefine · R3-RAG · REX-RAG | process rewards, refine-during-think, dead-end escape | [catalogue](papers/2025/README.md) |
+| ReasonIR · Rank1 · R3 | retrievers and rerankers for reasoning; RL-trained retriever | [catalogue](papers/2025/README.md) |
+| WebWalker · WebDancer · WebSailor · MaskSearch | open deep-search agents and training recipes | [catalogue](papers/2025/README.md) |
+| KG-R1 · Memory-R1 | RL over knowledge graphs; RL memory manager | [catalogue](papers/2025/README.md) |
 
 More in [papers/2025/README.md](papers/2025/README.md).
 
@@ -125,31 +156,40 @@ More in [papers/2025/README.md](papers/2025/README.md).
 **Structured knowledge:** [GraphRAG](https://arxiv.org/abs/2404.16130) · [HippoRAG](https://arxiv.org/abs/2405.14831) / [HippoRAG 2](https://arxiv.org/abs/2502.14802) · [LightRAG](https://arxiv.org/abs/2410.05779) · [RAPTOR](https://arxiv.org/abs/2401.18059)
 **Multimodal:** [ColPali](https://arxiv.org/abs/2407.01449) · [VisRAG](https://arxiv.org/abs/2410.10594)
 **Efficiency:** [RAGCache](https://arxiv.org/abs/2404.12457) · [CacheBlend](https://arxiv.org/abs/2405.16444)
-**Evaluation:** [CRAG benchmark](https://arxiv.org/abs/2406.04744) · [FRAMES](https://arxiv.org/abs/2409.12941) · [MultiHop-RAG](https://arxiv.org/abs/2401.15391) · [BRIGHT](https://arxiv.org/abs/2407.12883) · [RAGAS](https://arxiv.org/abs/2309.15217) · [ARES](https://arxiv.org/abs/2311.09476) · [ALCE](https://arxiv.org/abs/2305.14627)
+**Domain benchmarks:** [MIRAGE (medicine)](https://arxiv.org/abs/2402.13178) · [FinanceBench](https://arxiv.org/abs/2311.11944) · [Legal RAG Bench](https://arxiv.org/abs/2603.01710) · [CRAG-MM](https://arxiv.org/abs/2510.26160)
+**Evaluation:** [RGB](https://arxiv.org/abs/2309.01431) · [CRAG benchmark](https://arxiv.org/abs/2406.04744) · [FRAMES](https://arxiv.org/abs/2409.12941) · [MultiHop-RAG](https://arxiv.org/abs/2401.15391) · [BRIGHT](https://arxiv.org/abs/2407.12883) · [RAGAS](https://arxiv.org/abs/2309.15217) · [ARES](https://arxiv.org/abs/2311.09476) · [ALCE](https://arxiv.org/abs/2305.14627)
 **Surveys:** [Gao et al. 2023/24](https://arxiv.org/abs/2312.10997) · [RAG-Reasoning survey 2025](https://arxiv.org/abs/2507.09477) · [Agentic RAG survey 2025](https://arxiv.org/abs/2501.09136)
 
-Each of these has a what/how/why entry in [papers/foundations/README.md](papers/foundations/README.md).
+Each of these has a what/how/why entry in [papers/foundations/README.md](papers/foundations/README.md). Full notes: [Self-RAG](papers/foundations/self-rag.md) · [GraphRAG](papers/foundations/graphrag.md) · [HippoRAG](papers/foundations/hipporag.md) · [RAPTOR](papers/foundations/raptor.md).
 
 ---
 
 ## Code
 
 ```bash
-python -m unittest discover -s code/tests      # 17 tests, standard library only
+python -m unittest discover -s code/tests      # 33 tests, standard library only
 python code/examples/01_hybrid_retrieval.py    # naive RAG fails on a 4-hop question
 python code/examples/02_agentic_loop.py        # Search-R1 protocol + AutoSearch reward
 python code/examples/03_quco_trigger.py        # QuCo-RAG's corpus-statistics triggers
 python code/examples/04_t2rag.py               # T²RAG solves it in 2 rounds
+python code/examples/05_graph_ppr.py           # HippoRAG-style PPR reaches it in 1 step
+python code/examples/06_grpo.py                # why outcome reward can't see over-searching
+python code/examples/07_rerank_and_order.py    # rerank → MMR → lost-in-the-middle ordering
+python code/examples/08_evaluate.py            # EM 40 vs F1 50 vs cover-EM 60 on the same run
 ```
+
+Or open [`code/notebooks/ragkit_tour.ipynb`](code/notebooks/ragkit_tour.ipynb) for the whole story in one notebook. To run a real model, point `ragkit.OpenAICompatibleLLM` at a vLLM server.
 
 The examples share one running question: *"Are the directors of Move (1970) and Méditerranée (1963) from the same country?"* See [code/README.md](code/README.md).
 
 ## Tools and frameworks
 
+See the full infrastructure table in [docs/17](docs/17-production-guide.md#174-infrastructure-choices).
+
 [FlashRAG](https://github.com/RUC-NLPIR/FlashRAG) · [UltraRAG](https://github.com/OpenBMB/UltraRAG) · [LlamaIndex](https://github.com/run-llama/llama_index) · [LangGraph](https://github.com/langchain-ai/langgraph) · [Haystack](https://github.com/deepset-ai/haystack) · [RAGFlow](https://github.com/infiniflow/ragflow) · [GraphRAG](https://github.com/microsoft/graphrag) · [LightRAG](https://github.com/HKUDS/LightRAG) · [HippoRAG](https://github.com/OSU-NLP-Group/HippoRAG) · [ColPali](https://github.com/illuin-tech/colpali) · [FlagEmbedding](https://github.com/FlagOpen/FlagEmbedding) · [verl](https://github.com/volcengine/verl) · [OpenRLHF](https://github.com/OpenRLHF/OpenRLHF) · [vLLM](https://github.com/vllm-project/vllm) · [LMCache](https://github.com/LMCache/LMCache) · [RAGAS](https://github.com/explodinggradients/ragas) · [Mem0](https://github.com/mem0ai/mem0) · [A-MEM](https://github.com/agiresearch/A-mem) · [STORM](https://github.com/stanford-oval/storm)
 
 ## Other awesome lists
-[Awesome-RAG-Reasoning](https://github.com/DavidZWZ/Awesome-RAG-Reasoning) · [Awesome-RL-based-Agentic-Search-Papers](https://github.com/ventr1c/Awesome-RL-based-Agentic-Search-Papers) · [Awesome-GraphRAG](https://github.com/DEEP-PolyU/Awesome-GraphRAG) · [RAG-Survey](https://github.com/Tongji-KGLLM/RAG-Survey)
+[Awesome-RAG-Reasoning](https://github.com/DavidZWZ/Awesome-RAG-Reasoning) · [Awesome-RL-based-Agentic-Search-Papers](https://github.com/ventr1c/Awesome-RL-based-Agentic-Search-Papers) · [Awesome-GraphRAG](https://github.com/DEEP-PolyU/Awesome-GraphRAG) · [RAG-Survey](https://github.com/Tongji-KGLLM/RAG-Survey) · [Awesome-Deep-Research](https://github.com/DavidZWZ/Awesome-Deep-Research) · [Awesome-RAG-Security](https://github.com/TreeAI-Lab/Awesome-RAG-Security)
 
 ---
 
@@ -160,5 +200,6 @@ The examples share one running question: *"Are the directors of Move (1970) and 
 3. **Numbers are quoted only from the paper**, with the table or abstract they come from. Where sources disagree (Chart-MRAG), both are shown and the camera-ready figure is preferred.
 4. **Numbers are not compared across papers.** See [docs/11](docs/11-evaluation.md#112-why-you-cant-compare-numbers-across-papers).
 5. **Unverifiable items are excluded** and listed in the [verification log](docs/verification-log.md).
+6. **Links are machine-checked.** `python tools/check_links.py --external` verifies every GitHub repo and prints the arXiv title for every ID; `python tools/validate_papers.py` checks that [data/papers.csv](data/papers.csv) and each note agree on venue and IDs. CI runs the offline checks, the tests, the examples and the notebook on every push.
 
 Contributions welcome: see [CONTRIBUTING.md](CONTRIBUTING.md).

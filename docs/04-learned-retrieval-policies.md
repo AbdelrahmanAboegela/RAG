@@ -50,6 +50,26 @@ Note: [papers/2026/sparkle.md](../papers/2026/sparkle.md)
 - Train a **3B proxy** with PPO to control retrieval for a *frozen* LLM and retriever, reasoning over KG-style triplet chains.
 - It transfers to other LLMs and retrievers without retraining. Related to s3 (2025) and State-Aware RAG (§6), which also train only a small component.
 
+### (e) Process rewards: crediting the *steps*, not only the answer
+Outcome-only reward gives the same credit to a 4-search and a 5-search trajectory with the same answer (run `python code/examples/06_grpo.py`). The 2025–26 fixes:
+
+| Method | Step-level signal | Note |
+|---|---|---|
+| **StepSearch** (2025) | information gain minus redundancy, per search step (step-wise PPO) | needs sub-question-level trajectories |
+| **R3-RAG** (2025) | relevance-based document verification as a process reward | cold-start SFT, then RL |
+| **ReARTeR** (2025) | a trustworthy process reward model + a process *explanation* model | MCTS-collected preferences |
+| **AutoSearch** (Findings 2026) | marginal F1 gain per step + depth-based efficiency | [note](../papers/2026/autosearch.md) |
+| **HiPRAG** (ICLR 2026) | was *this* search (or non-search) decision necessary? | over-search rate 2.3%; [note](../papers/2026/hiprag.md) |
+| **CIPO** (arXiv 2026) | turn-level credit for reasoning actions actually *influenced by* retrieved evidence | targets prior-driven confirmation bias |
+| **AgenticRag-R1** (arXiv 2026) | hierarchical action-aware rewards over reason / retrieve / memorise actions with a memory stack | long-horizon |
+| **State-Aware RAG** (Findings 2026) | LLM-judge path reward on memory quality | [note](../papers/2026/state-aware-rag.md) |
+
+### (f) Exploration
+RL search policies get stuck in confidently wrong "dead ends". **REX-RAG** (2025) mixes probe sampling with exploratory prompts and corrects the distribution shift with importance sampling. **SPARKLE** uses binary tree-structured rollouts.
+
+### (g) Train the retriever too
+**Agentic-R** (Findings 2026), **R3** (2025) and **Critic-R** (2026) optimise the *retriever* for the agent's sub-queries. See [18](18-retrievers-for-reasoning-and-agents.md).
+
 ## 4.3 Cost-aware policies
 
 - **RAG-on-a-Diet** (ACL 2026 main): an RL agent picks the **model size per hop** (4B / 30B / 671B). 60% cheaper than IRCoT for a 3.7% F1 drop on HotpotQA. [note](../papers/2026/rag-on-a-diet.md)
@@ -60,6 +80,26 @@ Note: [papers/2026/sparkle.md](../papers/2026/sparkle.md)
 [note](../papers/2026/retrieval-bottleneck.md): RL-for-RAG performance follows sigmoidal scaling in compute, and **the ceiling is set by retrieval quality**. Algorithm and reward choices mostly change how *fast* you approach it. This matches State-Aware RAG's +22.2% from switching Wikipedia for Google Search.
 
 **Takeaway for practitioners:** fix the retriever and corpus before tuning the RL algorithm.
+
+Four independent 2026 data points agree:
+
+| Evidence | Retrieval change | Effect |
+|---|---|---|
+| The Retrieval Bottleneck (ACL 2026) | retriever quality in RL scaling curves | sets the asymptote |
+| State-Aware RAG (Findings 2026) | Wikipedia → Google Search | +22.2% |
+| BrowseComp-Plus (ACL 2026) | GPT-5 with BM25 → Qwen3-Embedding-8B | 55.9% → 70.1%, *with fewer searches* |
+| Legal RAG Bench (arXiv 2026) | best embedder vs. others | +17.5 correctness; many "hallucinations" were retrieval failures |
+
+```mermaid
+flowchart LR
+    A[Search-R1 2025<br/>outcome RL] --> B[When / whether<br/>UR², QuCo-RAG]
+    A --> C[How much<br/>AutoSearch, HiPRAG, RAG-on-a-Diet]
+    A --> D[Process credit<br/>StepSearch, CIPO, State-Aware]
+    A --> E[Who holds the policy<br/>s3, SPARKLE]
+    A --> F[Latent interface<br/>LatentRAG]
+    A --> G[Train the retriever<br/>Agentic-R, R3, Critic-R]
+    G --> H[Ceiling = retrieval<br/>Retrieval Bottleneck, BrowseComp-Plus]
+```
 
 ## 4.5 Reward design cheat-sheet
 

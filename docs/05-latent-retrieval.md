@@ -25,7 +25,7 @@ latent:    hidden → [16 <query> token states, one forward pass] → projector 
 
 ## 5.3 Related work
 
-- **Latent reasoning** (Coconut, "chain of continuous thought", 2024) showed hidden states can carry reasoning steps. LatentRAG connects that to a *retriever*.
+- **Latent reasoning** (Coconut, "chain of continuous thought", COLM 2025, [arXiv:2412.06769](https://arxiv.org/abs/2412.06769)) showed hidden states can carry reasoning steps. LatentRAG connects that to a *retriever*.
 - **CLaRa** (Apple, [arXiv:2511.18659](https://arxiv.org/abs/2511.18659), 💻 [apple/ml-clara](https://github.com/apple/ml-clara)) unifies retrieval and generation in a shared continuous space using compressed document representations. It makes the *documents* latent, where LatentRAG makes the *queries and thoughts* latent.
 - **REALM / RAG / Atlas** trained retrievers jointly with readers, but the interface stayed a text query.
 

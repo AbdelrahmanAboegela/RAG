@@ -12,6 +12,7 @@ This folder tells you how to run each paper's **official** code: where the repo 
 | [HiGoE](higoe.md) | [tkw123/HiGOE](https://github.com/tkw123/HiGOE) | GNN training + OpenAI API | ★★ |
 | [QueryLink](querylink.md) | [Dontplay0112/querylink](https://github.com/Dontplay0112/querylink) | API-based (gpt-4o-mini default) | ★ |
 | [SPARKLE](sparkle.md) | [jyfang6/sparkle](https://github.com/jyfang6/sparkle) | PPO on a 3B proxy model | ★★★ |
+| [BrowseComp-Plus](browsecomp-plus.md) | [texttron/BrowseComp-Plus](https://github.com/texttron/BrowseComp-Plus) | agent inference + retriever indexing (~100K docs) | ★★ |
 | [Chart-MRAG Bench](chart-mrag.md) | [Nomothings/CHARGE](https://github.com/Nomothings/CHARGE), HF `ymyang/chart-mrag` | MLLM inference | ★ |
 
 Papers with **no public code** as of September 2026 (checked on the paper page and by search): LatentRAG, State-Aware RAG (the paper footnote points to [amazon-science/state-aware-rag](https://github.com/amazon-science/state-aware-rag); the repo exists, but check whether it contains code yet), HiKEY, FRANQ (method builds on [LM-Polygraph](https://github.com/IINemo/lm-polygraph)), SpecCache, RAG-on-a-Diet, The Retrieval Bottleneck, EgoMemory, CMC-Bench.

@@ -19,7 +19,17 @@ RAG cost has four parts: **retrieval latency**, **prefill** of long contexts, **
 3. **CacheBlend** ([arXiv:2405.16444](https://arxiv.org/abs/2405.16444), part of [LMCache](https://github.com/LMCache/LMCache)): reuse each document's KV even when it is not a prefix, and **recompute a small subset of tokens** to restore cross-attention between documents.
 4. **SpecCache** (ACL 2026 main): *which* tokens to recompute? KV deviations are biggest in deep layers, but probing the big model is expensive, so a **small speculative model's hidden-state norms** choose. TTFT falls 2.17–3.95× and throughput rises 2.7–5.2× vs full recompute, with negligible quality loss.
 
-Security note: shared KV caches can leak across users (side-channel attacks on non-prefix caching are an active 2026 topic).
+5. **CacheClip** ([arXiv:2510.10129](https://arxiv.org/abs/2510.10129)): a small auxiliary LLM's last-layer attention picks the tokens to recompute (the same idea as SpecCache); shared prefixes remove repeated attention sinks. Up to 3.33× faster prefill at 20% recompute.
+6. **PCR** ([arXiv:2603.23049](https://arxiv.org/abs/2603.23049)): a *systems* view. Look-ahead LRU using the scheduler queue, layer-wise overlap of KV loading with compute, and SSD→DRAM prefetch. Up to 2.47× faster TTFT.
+
+**Security note:** shared non-prefix KV caches leak across users. **SpliceLeak** ([arXiv:2606.21842](https://arxiv.org/abs/2606.21842)) extracts other users' prompts through TTFT timing on vLLM + LMCache. See [15](15-security.md).
+
+## 10.1b Answer caching (skip the LLM entirely), safely
+
+Semantic answer caches are fragile: similar questions can have different answers, and documents change.
+- **GroundedCache** ([arXiv:2605.27494](https://arxiv.org/abs/2605.27494)) serves a cached answer only if four gates pass: query similarity, evidence overlap, source version, and lexical support in *fresh* evidence. The unsafe-served rate drops from 15–35% to 0% on HotpotQA regimes, at 1.04–1.07× the no-cache latency. Lexical support is the load-bearing gate.
+- **FinCacheServe** ([arXiv:2607.26076](https://arxiv.org/abs/2607.26076)) keys answers by document version, evidence and tool fingerprints, model and decoding config. It skips about 53% of LLM calls on SEC-filing workloads with no stale outputs observed.
+- Toy implementation with all four gates: [`code/ragkit/cache.py`](../code/ragkit/cache.py).
 
 ## 10.2 A latency budget for the running example (illustrative)
 

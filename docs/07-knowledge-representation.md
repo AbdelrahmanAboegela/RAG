@@ -44,7 +44,25 @@ Note: [papers/2026/higoe.md](../papers/2026/higoe.md)
 
 For long-context **summarization**, not QA: build a filtered proposition–evidence graph, organise it hierarchically with Personalized PageRank, and select evidence with an enhanced GAT. Code: [tkw123/HiGOE](https://github.com/tkw123/HiGOE).
 
-## 7.4 Design guidance
+## 7.4 The 2026 graph-RAG landscape
+
+| Paper | Status | Idea |
+|---|---|---|
+| **TH-RAG** | ACL 2026 main | topic → subtopic → triplet hierarchy repairs fragmented LLM-built KGs ([note](../papers/2026/th-rag.md)) |
+| **ParallaxRAG** | ACL 2026 main | head-specific multi-view KG retrieval, motivated by attention-head specialisation; SOTA on WebQSP/CWQ ([note](../papers/2026/parallaxrag.md)) |
+| **MegaRAG** | ACL 2026 main | multimodal KG construction, retrieval and generation ([note](../papers/2026/megarag.md)) |
+| **KG-R1** | arXiv 2025 | a single RL agent that treats the KG as its environment; transfers to unseen KGs |
+| **ConRAG** | arXiv 2026 | consensus across relation, entity and text views; up to +26.9% over vanilla RAG |
+| **PAGE-RAG** | arXiv 2026 | a temporary query-local graph over candidates; edges are *hypotheses*, not support (the "connectivity–support gap") |
+| **Co-E** | arXiv 2026 | training-free synchronised graph + text working memory |
+| **MG²-RAG** | arXiv 2026 | multi-granularity multimodal graph; 43× faster construction |
+| **GraphRAG-Bench** | arXiv 2025 | *when* do graphs actually help RAG? ([arXiv:2506.05690](https://arxiv.org/abs/2506.05690), 💻 [GraphRAG-Bench](https://github.com/GraphRAG-Bench/GraphRAG-Benchmark)) |
+
+Two trends: **cheaper graphs** (T²RAG drops the graph; MG²-RAG and TH-RAG lower the build cost), and **graphs as temporary reasoning scaffolds** rather than permanent indexes (PAGE-RAG, Co-E).
+
+Toy code: [`code/ragkit/graph.py`](../code/ragkit/graph.py) (triplet graph + PPR), [`raptor.py`](../code/ragkit/raptor.py) (induced tree), [`t2rag.py`](../code/ragkit/t2rag.py) (graph-free triplets). Examples 04 and 05 solve the running example with T²RAG and PPR.
+
+## 7.5 Design guidance
 
 - **Factoid multi-hop QA over encyclopedic text:** try triplets (T²RAG) before a full graph.
 - **Global sense-making questions** ("What are the themes across these 500 reports?"): GraphRAG-style community summaries.

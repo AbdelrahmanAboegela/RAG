@@ -1,0 +1,31 @@
+key,title,year,status,venue_detail,topic,arxiv,anthology,code,note
+latentrag,"LatentRAG: Latent Reasoning and Retrieval for Efficient Agentic RAG",2026,arxiv,,latent,2605.06285,,,papers/2026/latentrag.md
+ur2,"UR2: Unify RAG and Reasoning through Reinforcement Learning",2026,acl-main,,policy,2508.06165,2026.acl-long.580,https://github.com/Tsinghua-dhy/UR2,papers/2026/ur2.md
+state-aware-rag,"Reasoning with Memory: Adaptive Information Management for Retrieval-Augmented Generation",2026,acl-findings,,memory,,2026.findings-acl.1834,https://github.com/amazon-science/state-aware-rag,papers/2026/state-aware-rag.md
+quco-rag,"QuCo-RAG: Quantifying Uncertainty from the Pre-training Corpus for Dynamic Retrieval-Augmented Generation",2026,acl-findings,,policy,2512.19134,,https://github.com/ZhishanQ/QuCo-RAG,papers/2026/quco-rag.md
+autosearch,"AutoSearch: Adaptive Search Depth for Efficient Agentic RAG via Reinforcement Learning",2026,acl-findings,,policy,2604.17337,2026.findings-acl.1399,https://github.com/bofusun/AutoSearch,papers/2026/autosearch.md
+t2rag,"Beyond Chunks and Graphs: Retrieval-Augmented Generation through Triplet-Driven Thinking",2026,acl-findings,,representation,2508.02435,2026.findings-acl.1310,https://github.com/Emory-Melody/T2RAG,papers/2026/t2rag.md
+hikey,"HiKEY: Hierarchical Multimodal Retrieval for Open-Domain Document Question Answering",2026,acl-main,per arXiv comment,representation,2605.29606,,,papers/2026/hikey.md
+higoe,"HiGoE: Hierarchical Graph of Evidence to Enhance Retrieval-Augmented Generation for Long-context Summarization",2026,acl-main,,representation,,2026.acl-long.902,https://github.com/tkw123/HiGOE,papers/2026/higoe.md
+franq,"Faithfulness-Aware Uncertainty Quantification for Fact-Checking the Output of Retrieval-Augmented Generation",2026,acl-findings,,trust,2505.21072,2026.findings-acl.338,,papers/2026/franq.md
+chart-mrag,"Chart-MRAG: Benchmarking Multimodal Retrieval Augmented Generation on Chart-based Documents",2026,acl-main,,multimodal,,2026.acl-long.1164,https://github.com/Nomothings/CHARGE,papers/2026/chart-mrag.md
+cmc-bench,"When Image and Text Disagree: Cross-Modal Evidence Conflict in Multimodal Retrieval-Augmented Generation",2026,workshop,MAGMaR 2026,multimodal,,2026.magmar-main.3,,papers/2026/cmc-bench.md
+speccache,"SpecCache: Speculative KV Cache Reuse for Efficient RAG Serving",2026,acl-main,,efficiency,,2026.acl-long.859,,papers/2026/speccache.md
+sparkle,"SPARKLE: A Structured and Plug-and-play Agentic Retrieval Policy for Adaptive RAG Models",2026,acl-main,,policy,,2026.acl-long.1793,https://github.com/jyfang6/sparkle,papers/2026/sparkle.md
+querylink,"QueryLink: Leveraging Query-Memory Alignment for Long-Term Reasoning in LLM Agents",2026,acl-findings,,memory,,2026.findings-acl.765,https://github.com/Dontplay0112/querylink,papers/2026/querylink.md
+egomemory,"EgoMemory: Memory-Augmented Personalized Retrieval for Long-Context Egocentric Video",2026,acl-findings,,memory,,2026.findings-acl.362,,papers/2026/egomemory.md
+rag-on-a-diet,"RAG-on-a-Diet: A Reinforcement Learning-Based Dynamic Resource Optimization Framework for RAG",2026,acl-main,,efficiency,,2026.acl-long.1562,,papers/2026/rag-on-a-diet.md
+retrieval-bottleneck,"The Retrieval Bottleneck: Scaling Laws for Reinforcement Learning in RAG",2026,acl-main,,policy,,2026.acl-long.1478,,papers/2026/retrieval-bottleneck.md
+browsecomp-plus,"BrowseComp-Plus: A More Fair and Transparent Evaluation Benchmark of Deep-Research Agent",2026,acl-main,per official repo,evaluation,2508.06600,,https://github.com/texttron/BrowseComp-Plus,papers/2026/browsecomp-plus.md
+agentic-r,"Agentic-R: Learning to Retrieve for Agentic Search",2026,acl-findings,,retrievers,,2026.findings-acl.785,,papers/2026/agentic-r.md
+hiprag,"HiPRAG: Hierarchical Process Rewards for Efficient Agentic Retrieval Augmented Generation",2026,other,ICLR 2026 (per arXiv comment),policy,2510.07794,,,papers/2026/hiprag.md
+th-rag,"TH-RAG: Topic-Based Hierarchical Knowledge Graphs for Robust Multi-hop Reasoning in Graph-based RAG Systems",2026,acl-main,,representation,,2026.acl-long.1740,,papers/2026/th-rag.md
+parallaxrag,"Think Parallax: Solving Multi-Hop Problems via Multi-View Knowledge-Graph-Based Retrieval-Augmented Generation",2026,acl-main,,representation,,2026.acl-long.1226,https://github.com/LucaLiu1313/ParallaxRAG,papers/2026/parallaxrag.md
+megarag,"MegaRAG: Multimodal Knowledge Graph-Based Retrieval Augmented Generation",2026,acl-main,,multimodal,,2026.acl-long.2218,,papers/2026/megarag.md
+inceptionrag,"InceptionRAG: Stealthy Poisoning Attack Against Retrieval-Augmented Generation",2026,other,ACM CCS 2026 (per arXiv comment),security,2609.16818,,,papers/2026/inceptionrag.md
+openresearcher,"OpenResearcher: A Fully Open Pipeline for Long-Horizon Deep Research Trajectory Synthesis",2026,arxiv,,deep-research,2603.20278,,https://github.com/TIGER-AI-Lab/OpenResearcher,papers/2026/openresearcher.md
+search-r1,"Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning",2025,other,COLM 2025,policy,2503.09516,,https://github.com/PeterGriffinJin/Search-R1,papers/2025/search-r1.md
+self-rag,"Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection",2024,other,ICLR 2024,policy,2310.11511,,https://github.com/AkariAsai/self-rag,papers/foundations/self-rag.md
+graphrag,"From Local to Global: A Graph RAG Approach to Query-Focused Summarization",2024,arxiv,,representation,2404.16130,,https://github.com/microsoft/graphrag,papers/foundations/graphrag.md
+hipporag,"HippoRAG: Neurobiologically Inspired Long-Term Memory for Large Language Models",2024,other,NeurIPS 2024,representation,2405.14831,,https://github.com/OSU-NLP-Group/HippoRAG,papers/foundations/hipporag.md
+raptor,"RAPTOR: Recursive Abstractive Processing for Tree-Organized Retrieval",2024,other,ICLR 2024,representation,2401.18059,,https://github.com/parthsarthi03/raptor,papers/foundations/raptor.md
